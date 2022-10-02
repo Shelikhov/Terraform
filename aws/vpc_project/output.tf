@@ -1,12 +1,16 @@
-output "vpc-id" {
-  value = data.aws_vpc.web_server_linux_vpc.id
+output "region" {
+  value = var.region
 }
 
-output "custom_public_subnets" {
-  value = [aws_subnet.public_subnets[0], aws_subnet.public_subnets[1].id]
+output "vpc_id" {
+  value = aws_vpc.custom_vpc.id
 }
 
-output "custom_private_subnets" {
+output "custom_public_subnet_ids" {
+  value = [aws_subnet.public_subnets[0].id, aws_subnet.public_subnets[1].id]
+}
+
+output "custom_private_subnet_ids" {
   value = [aws_subnet.private_subnets[0].id, aws_subnet.private_subnets[1].id]
 }
 
@@ -15,7 +19,7 @@ output "availability-zones" {
 }
 
 output "internet_gateway_id" {
-  value = data.aws_internet_gateway.gateway.internet_gateway_id
+  value = aws_internet_gateway.custom_internet_gateway.id
 }
 
 output "public_route_table" {
