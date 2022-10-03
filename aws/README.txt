@@ -1,8 +1,12 @@
-Infrastructure with compute and network resources for web server and RDS
+Infrastructure with compute and network modules
+
+Components:
+- Web Server
+- RDS (Postgres)
 
 Launch order:
 1. state_storage
-2. vpc_project
+2. network_project
 3. compute_project
 
 

@@ -1,10 +1,6 @@
-provider "aws"{
-  region = var.region
-}
-
-data "aws_availability_zones" "azs" {
-  state = "available"
-}
+#===============================================================
+#                  NETWORK RESOURCES
+#===============================================================
 
 locals {
   azs = [data.aws_availability_zones.azs.names[0], data.aws_availability_zones.azs.names[1]]

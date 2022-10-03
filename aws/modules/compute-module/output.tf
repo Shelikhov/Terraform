@@ -1,7 +1,3 @@
-output "region" {
-  value = var.region
-}
-
 output "availability-zones" {
   value = [data.aws_availability_zones.azs.names[0], data.aws_availability_zones.azs.names[1]]
 }

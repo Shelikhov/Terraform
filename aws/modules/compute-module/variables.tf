@@ -1,9 +1,5 @@
 ### Common ###
 
-variable "region" {
-  default = "us-east-2"
-}
-
 variable "project_name" {
   default = "web-server-linux"
 }
@@ -68,11 +64,11 @@ variable "instance_egress_protocol" {
 }
 
 variable "file_ssh_id_rsa" {
-  default = "/path_to_id_rsa.pub"
+  default = ""
 }
 
 variable "file_user_data" {
-  default = "webserver-script.sh.tpl"
+  default = ""
 }
 
 

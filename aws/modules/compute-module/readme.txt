@@ -1,9 +1,9 @@
 Infrastructure with compute resources for web server and RDS
 
-1.To replace path to an id_rsa key to connect to ec2 instances
-2.To replace s3 bucket name in following files: 
-- main.tf
-- remote_state.tf 
+1.To replace path to an id_rsa key to connect to ec2 instances in variables.tf file, parameter file_ssh_id_rsa
+2.To replace path to a web-server script file in variables.tf file parameter file_user_data
+3.To replace s3 bucket information in following files: 
+- dependencies.tf
 
 AWS components:
 - key pair (for EC2 instances)

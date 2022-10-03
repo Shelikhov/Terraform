@@ -1,19 +1,6 @@
-provider "aws"{
-  region = var.region
-}
-
-data "terraform_remote_state" "network" {
-  backend = "s3"
-  config = {
-    bucket = "web-server-linux-prefix"
-    key = "terraform/dev/network"
-    region = "us-east-2"
-  }
-}
-
-data "aws_availability_zones" "azs" {
-  state = "available"
-}
+#=============================================
+#           COMPUTE RESOURCES
+#=============================================
 
 locals {
   azs = [data.aws_availability_zones.azs.names[0], data.aws_availability_zones.azs.names[1]]
