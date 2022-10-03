@@ -48,7 +48,7 @@ resource "aws_security_group" "my_security_group" {
 
 resource "aws_key_pair" "ec2_key_pair" {
   key_name = var.project_name
-  public_key = file("${var.file_ssh_id_rsa}")
+  public_key = file("${var.ec2_file_ssh_id_rsa_path}")
   tags = var.tags
 }
 

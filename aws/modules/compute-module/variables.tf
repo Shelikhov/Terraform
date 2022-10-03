@@ -63,7 +63,7 @@ variable "instance_egress_protocol" {
   default = -1
 }
 
-variable "file_ssh_id_rsa" {
+variable "ec2_file_ssh_id_rsa_path" {
   default = ""
 }
 
