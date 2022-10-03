@@ -3,11 +3,11 @@
 #=============================================
 
 data "terraform_remote_state" "network" {
-  backend = "s3"
+  backend = var.state_storage_type
   config = {
-    bucket = "bucket_name"
-    key = "state_path"
-    region = "region"
+    bucket = var.s3_bucket_name
+    key = var.s3_key_path
+    region = var.aws_region
   }
 }
 

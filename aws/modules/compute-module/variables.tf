@@ -14,6 +14,26 @@ variable "tags" {
 
 
 
+### Network Dependencies ###
+
+variable "state_storage_type" {
+  default = "s3"
+}
+
+variable "s3_bucket_name" {
+  default = ""
+}
+
+variable "s3_key_path" {
+  default = ""
+}
+
+variable "aws_region" {
+  default = "us-east-2"
+}
+
+
+
 ### EC2 Instance ###
 
 variable "instance_image_id" {
