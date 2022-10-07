@@ -5,10 +5,10 @@ variable "project_name" {
 }
 
 variable "tags" {
-  type = map
+  type = map(any)
   default = {
     project_name = "web_server_linux"
-    environment = "dev"
+    environment  = "dev"
   }
 }
 
@@ -56,31 +56,24 @@ variable "instance_desired_count" {
   default = 3
 }
 
-variable "instance_ingress_ports" {
-  type = list
-  default = ["0"]
+variable "sg_ingress_rules" {
+  default = [
+    {
+      port        = 0
+      protocol    = -1
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  ]
 }
 
-variable "instance_ingress_protocol" {
-  default = -1
-}
-
-variable "instance_ingress_cidr" {
-  type = list
-  default = ["0.0.0.0/0"]
-}
-variable "instance_egress_cidr" {
-  type = list
-  default = ["0.0.0.0/0"]
-}
-
-variable "instance_egress_ports" {
-  type = list
-  default = ["0"]
-}
-
-variable "instance_egress_protocol" {
-  default = -1
+variable "sg_egress_rules" {
+  default = [
+    {
+      port        = 0
+      protocol    = -1
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  ]
 }
 
 variable "ec2_file_ssh_id_rsa_path" {
@@ -96,7 +89,7 @@ variable "file_user_data" {
 ### ELB ###
 
 variable "lb_ports" {
-  type = list
+  type    = list(any)
   default = ["80"]
 }
 

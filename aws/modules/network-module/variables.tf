@@ -15,16 +15,16 @@ variable "private_subnets" {
 }
 
 variable "vpc_routes" {
-  type = map
+  type = map(any)
   default = {
     destination = "0.0.0.0/0"
   }
 }
 
 variable "tags" {
-  type = map
+  type = map(any)
   default = {
     project_name = "web_server_linux"
-    environment = "dev"
+    environment  = "dev"
   }
 }

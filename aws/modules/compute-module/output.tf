@@ -9,7 +9,7 @@ output "security_group_name" {
 output "launch_template" {
   value = {
     name = aws_launch_template.ec2_linux_template.name
-    id = aws_launch_template.ec2_linux_template.id
+    id   = aws_launch_template.ec2_linux_template.id
   }
 }
 
@@ -20,15 +20,15 @@ output "autoscaling_group" {
 output "elastic_load_balancer" {
   value = {
     name = aws_elb.web_server_loadbalancer.name
-    id = aws_elb.web_server_loadbalancer.id
-    arn = aws_elb.web_server_loadbalancer.arn
+    id   = aws_elb.web_server_loadbalancer.id
+    arn  = aws_elb.web_server_loadbalancer.arn
   }
 }
 
 output "rds" {
   value = {
-    id = aws_db_instance.postgresql.id
+    id     = aws_db_instance.postgresql.id
     engine = aws_db_instance.postgresql.engine
-    arn = aws_db_instance.postgresql.arn
+    arn    = aws_db_instance.postgresql.arn
   }
 }

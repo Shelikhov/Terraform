@@ -3,11 +3,11 @@ variable "aws_region" {
 }
 
 variable "web_server_script_file_path" {
-  default = "path_to_web_server_script_file"
+  default = ""
 }
 
 variable "ec2_file_ssh_id_rsa_path" {
-  default = "path_to_id_rsa.pub_file"
+  default = ""
 }
 
 variable "state_storage_type" {
@@ -15,7 +15,7 @@ variable "state_storage_type" {
 }
 
 variable "s3_bucket_name" {
-  default = "bucket_name"
+  default = ""
 }
 
 variable "s3_key_path" {

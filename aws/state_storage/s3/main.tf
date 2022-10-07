@@ -1,12 +1,12 @@
-provider "aws"{
+provider "aws" {
   region = var.region
 }
 
 resource "random_string" "bucket_prefix" {
-  length = var.bucket_prefix_length
+  length  = var.bucket_prefix_length
   special = false
-  lower = true
-  upper = false
+  lower   = true
+  upper   = false
 }
 
 resource "aws_s3_bucket" "web_server" {
@@ -15,5 +15,5 @@ resource "aws_s3_bucket" "web_server" {
     enabled = true
   }
   force_destroy = true
-  tags = var.tags
+  tags          = var.tags
 }

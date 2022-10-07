@@ -6,10 +6,10 @@ variable "project_name" {
   default = "web-server-linux"
 }
 variable "tags" {
-  type = map
+  type = map(any)
   default = {
     project_name = "web_server_linux"
-    environment = "dev"
+    environment  = "dev"
   }
 }
 
