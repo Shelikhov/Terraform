@@ -9,6 +9,7 @@ variable "tags" {
   default = {
     project_name = "web_server_linux"
     environment  = "dev"
+    target       = "db_postgres"
   }
 }
 
@@ -55,6 +56,10 @@ variable "sg_egress_rules" {
       cidr_blocks = ["0.0.0.0/0"]
     }
   ]
+}
+
+variable "sg_name_prefix_length" {
+  default = 5
 }
 
 

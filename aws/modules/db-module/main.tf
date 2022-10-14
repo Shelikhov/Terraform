@@ -14,7 +14,7 @@ locals {
 ### Security Group
 
 resource "aws_security_group" "my_security_group" {
-  name   = var.project_name
+  name   = "${var.project_name}-${random_string.sg_name_prefix.result}"
   vpc_id = local.network.vpc_id
 
   dynamic "ingress" {
@@ -39,6 +39,14 @@ resource "aws_security_group" "my_security_group" {
   tags = var.tags
 }
 
+### Security Group Name Prefix
+
+resource "random_string" "sg_name_prefix" {
+  length  = var.sg_name_prefix_length
+  special = false
+  lower   = true
+  upper   = false
+}
 
 
 
