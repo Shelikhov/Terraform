@@ -14,7 +14,7 @@ locals {
 ### Security Group
 
 resource "aws_security_group" "my_security_group" {
-  name   = var.project_name
+  name   = "${var.project_name}-${random_string.sg_name_prefix.result}"
   vpc_id = local.network.vpc_id
 
   dynamic "ingress" {
@@ -37,6 +37,13 @@ resource "aws_security_group" "my_security_group" {
     }
   }
   tags = var.tags
+}
+
+resource "random_string" "sg_name_prefix" {
+  length           = var.sg_name_prefix_length
+  special          = false
+  lower            = true
+  upper            = false
 }
 
 
@@ -63,7 +70,7 @@ resource "aws_launch_template" "ec2_linux_template" {
   key_name               = aws_key_pair.ec2_key_pair.key_name
   user_data              = filebase64("${var.file_user_data}")
   tags                   = var.tags
-  depends_on             = [aws_db_instance.postgresql]
+#  depends_on             = [aws_db_instance.postgresql]
 }
 
 ### Auto Scaling Group
@@ -106,52 +113,4 @@ resource "aws_elb" "web_server_loadbalancer" {
     interval            = var.interval
   }
   tags = var.tags
-}
-
-################### RDS resources #########################
-
-### RDS
-
-resource "aws_db_instance" "postgresql" {
-  identifier             = var.project_name
-  engine                 = var.rds_engine
-  allocated_storage      = var.rds_storage
-  instance_class         = var.rds_instance_class
-  db_name                = var.rds_db_name
-  username               = var.rds_db_username
-  password               = random_string.rds_password.result
-  storage_type           = var.rds_storage_type
-  skip_final_snapshot    = true
-  apply_immediately      = true
-  db_subnet_group_name   = aws_db_subnet_group.rds_subnet.name
-  vpc_security_group_ids = [aws_security_group.my_security_group.id]
-  publicly_accessible    = false
-  #  multi_az = false
-  tags = var.tags
-}
-
-### RDS credentials
-
-resource "random_string" "rds_password" {
-  length           = var.rds_db_pass_length
-  special          = true
-  override_special = var.rds_db_pass_spec_characters
-  lower            = true
-  upper            = true
-}
-
-###Credential storage
-
-resource "aws_ssm_parameter" "rds_password" {
-  name  = var.rds_db_pass_path
-  type  = "SecureString"
-  value = random_string.rds_password.result
-}
-
-### RDS Subnet Group
-
-resource "aws_db_subnet_group" "rds_subnet" {
-  name       = var.project_name
-  subnet_ids = local.network.custom_private_subnet_ids
-  tags       = var.tags
 }

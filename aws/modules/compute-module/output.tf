@@ -24,11 +24,3 @@ output "elastic_load_balancer" {
     arn  = aws_elb.web_server_loadbalancer.arn
   }
 }
-
-output "rds" {
-  value = {
-    id     = aws_db_instance.postgresql.id
-    engine = aws_db_instance.postgresql.engine
-    arn    = aws_db_instance.postgresql.arn
-  }
-}

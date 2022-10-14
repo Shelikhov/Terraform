@@ -9,6 +9,4 @@ AWS components:
 - launch template for ec2 instances
 - auto scaling group
 - classic load balancer
-- RDS (PostgreSQL)
-- SSM Parameter (to store db password)
-- random string (to generate random db password)
+- random string (security group name prefix)

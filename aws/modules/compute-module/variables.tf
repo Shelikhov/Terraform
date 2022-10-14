@@ -34,6 +34,34 @@ variable "aws_region" {
 
 
 
+### Security Group ###
+
+variable "sg_ingress_rules" {
+  default = [
+    {
+      port        = 0
+      protocol    = -1
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  ]
+}
+
+variable "sg_egress_rules" {
+  default = [
+    {
+      port        = 0
+      protocol    = -1
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  ]
+}
+
+variable "sg_name_prefix_length" {
+  default = 5
+}
+
+
+
 ### EC2 Instance ###
 
 variable "instance_image_id" {
@@ -54,26 +82,6 @@ variable "instance_min_count" {
 
 variable "instance_desired_count" {
   default = 3
-}
-
-variable "sg_ingress_rules" {
-  default = [
-    {
-      port        = 0
-      protocol    = -1
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-  ]
-}
-
-variable "sg_egress_rules" {
-  default = [
-    {
-      port        = 0
-      protocol    = -1
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-  ]
 }
 
 variable "ec2_file_ssh_id_rsa_path" {
@@ -111,46 +119,4 @@ variable "target" {
 
 variable "interval" {
   default = 10
-}
-
-
-
-
-
-### RDS ###
-
-variable "rds_engine" {
-  default = "postgres"
-}
-
-variable "rds_storage" {
-  default = 20
-}
-
-variable "rds_instance_class" {
-  default = "db.t3.micro"
-}
-
-variable "rds_db_name" {
-  default = "dev"
-}
-
-variable "rds_storage_type" {
-  default = "gp2"
-}
-
-variable "rds_db_pass_path" {
-  default = "/dev/postgres"
-}
-
-variable "rds_db_pass_length" {
-  default = 16
-}
-
-variable "rds_db_pass_spec_characters" {
-  default = "!#"
-}
-
-variable "rds_db_username" {
-  default = "username"
 }
