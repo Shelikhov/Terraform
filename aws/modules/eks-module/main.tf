@@ -15,7 +15,7 @@ locals {
 resource "aws_eks_cluster" "eks_cluster" {
   name     = local.network.project_name
   role_arn = data.aws_iam_role.eks_iam_role.arn
-  vpc_config = {
+  vpc_config {
     subnet_ids = local.network.custom_private_subnet_ids
   }
   tags = var.tags
