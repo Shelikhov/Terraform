@@ -3,7 +3,7 @@ output "eks_cluster_name" {
 }
 
 output "master_nodes_subnet_ids" {
-  value = aws_eks_cluster.eks_cluster.vpc_config.subnet_ids
+  value = aws_eks_cluster.eks_cluster.vpc_config[*]
 }
 
 output "node_group_name" {

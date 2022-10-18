@@ -32,19 +32,23 @@ variable "aws_region" {
 ### EKS Node Group ###
 
 variable "instance_image_id" {
-  default = "ami-0f924dc71d44d23e2"
+  default = "AL2_x86_64"
 }
 
 variable "instance_types" {
   default = ["t2.micro"]
 }
 
-variable "scaling_config" {
-  default = {
-    desired_size = 2
-    max_size     = 2
-    min_size     = 1
-  }
+variable "scaling_config_min" {
+  default = 1
+}
+
+variable "scaling_config_max" {
+  default = 2
+}
+
+variable "scaling_config_desired" {
+  default = 2
 }
 
 variable "ec2_file_ssh_id_rsa_path" {
