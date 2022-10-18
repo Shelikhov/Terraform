@@ -1,3 +1,7 @@
+output "project_name" {
+  value = var.project_name
+}
+
 output "vpc_id" {
   value = aws_vpc.custom_vpc.id
 }
