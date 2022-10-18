@@ -40,10 +40,10 @@ resource "aws_security_group" "my_security_group" {
 }
 
 resource "random_string" "sg_name_prefix" {
-  length           = var.sg_name_prefix_length
-  special          = false
-  lower            = true
-  upper            = false
+  length  = var.sg_name_prefix_length
+  special = false
+  lower   = true
+  upper   = false
 }
 
 
@@ -70,7 +70,7 @@ resource "aws_launch_template" "ec2_linux_template" {
   key_name               = aws_key_pair.ec2_key_pair.key_name
   user_data              = filebase64("${var.file_user_data}")
   tags                   = var.tags
-#  depends_on             = [aws_db_instance.postgresql]
+  #  depends_on             = [aws_db_instance.postgresql]
 }
 
 ### Auto Scaling Group

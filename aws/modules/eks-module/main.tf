@@ -13,7 +13,7 @@ locals {
 ### EKS Cluster
 
 resource "aws_eks_cluster" "eks_cluster" {
-  name   = local.network.project_name
+  name     = local.network.project_name
   role_arn = data.aws_iam_role.eks_iam_role.arn
   vpc_config = {
     subnet_ids = local.network.custom_private_subnet_ids
@@ -25,12 +25,12 @@ resource "aws_eks_cluster" "eks_cluster" {
 
 resource "aws_eks_node_group" "eks_node_group" {
   node_group_name = local.network.project_name
-  cluster_name = aws_eks_cluster.eks_cluster.name
-  node_role_arn = data.aws_iam_role.eks_iam_role.arn
-  scaling_config = var.scaling_config
-  subnet_ids = local.network.custom_public_subnet_ids
-  ami_type = var.instance_image_id
-  instance_types = var.instance_types
+  cluster_name    = aws_eks_cluster.eks_cluster.name
+  node_role_arn   = data.aws_iam_role.eks_iam_role.arn
+  scaling_config  = var.scaling_config
+  subnet_ids      = local.network.custom_public_subnet_ids
+  ami_type        = var.instance_image_id
+  instance_types  = var.instance_types
   remote_access {
     ec2_ssh_key = aws_key_pair.ec2_key_pair.key_name
   }

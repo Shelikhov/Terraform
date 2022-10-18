@@ -103,8 +103,8 @@ resource "aws_security_group" "security_group" {
 }
 
 resource "random_string" "sg_name_prefix" {
-  length           = var.sg_name_prefix_length
-  special          = false
-  lower            = true
-  upper            = false
+  length  = var.sg_name_prefix_length
+  special = false
+  lower   = true
+  upper   = false
 }
