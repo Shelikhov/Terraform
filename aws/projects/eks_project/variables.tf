@@ -2,12 +2,8 @@ variable "aws_region" {
   default = "us-east-2"
 }
 
-variable "web_server_script_file_path" {
-  default = "" # Script for ec2 initializing
-}
-
 variable "ec2_file_ssh_id_rsa_path" {
-  default = "" # SSH key location to get access to ec2 instances
+  default = "" # SSH key locatin
 }
 
 variable "state_storage_type" {
