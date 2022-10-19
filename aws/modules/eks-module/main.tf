@@ -26,7 +26,7 @@ resource "aws_eks_cluster" "eks_cluster" {
 resource "aws_eks_node_group" "eks_node_group" {
   node_group_name = local.network.project_name
   cluster_name    = aws_eks_cluster.eks_cluster.name
-  node_role_arn   = data.aws_iam_role.eks_iam_role.arn
+  node_role_arn   = data.aws_iam_role.eks_node_group_iam_role.arn
   scaling_config {
     desired_size = var.scaling_config_desired
     max_size     = var.scaling_config_max

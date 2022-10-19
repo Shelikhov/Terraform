@@ -21,3 +21,10 @@ data "aws_iam_role" "eks_iam_role" {
     service = "eks"
   }
 }
+
+data "aws_iam_role" "eks_node_group_iam_role" {
+  name = "eks_node_group"
+  tags = {
+    service = "eks"
+  }
+}
