@@ -63,5 +63,5 @@ variable "cni_addon_name" {
 }
 
 variable "cni_addon_version" {
-  default = "1.11.4-eksbuild.1"
+  default = "v1.11.4-eksbuild.1"
 }
