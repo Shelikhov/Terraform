@@ -21,6 +21,15 @@ resource "aws_eks_cluster" "eks_cluster" {
   tags = var.tags
 }
 
+### EKS Add-ons
+
+resource "aws_eks_addon" "eks_cni" {
+  addon_name    = var.cni_addon_name
+  cluster_name  = aws_eks_cluster.eks_cluster.name
+  addon_version = var.cni_addon_version
+  tags          = var.tags
+}
+
 ### EKS Node Group
 
 resource "aws_eks_node_group" "eks_node_group" {
@@ -41,10 +50,40 @@ resource "aws_eks_node_group" "eks_node_group" {
   tags = var.tags
 }
 
-### Key Pair
+### Key Pair (to get access to worker nodes)
 
 resource "aws_key_pair" "ec2_key_pair" {
   key_name   = local.network.project_name
   public_key = file("${var.ec2_file_ssh_id_rsa_path}")
   tags       = var.tags
+}
+
+### IAM Role
+
+resource "aws_iam_role" "eks_node_group_role" {
+  name = "eks_node_group"
+  assume_role_policy = jsonencode({
+    Statement = [{
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
+      Principal = {
+        Service = "ec2.amazonaws.com"
+      }
+    }]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "eks_worker_node_policy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
+  role       = aws_iam_role.eks_node_group_role.name
+}
+
+resource "aws_iam_role_policy_attachment" "eks_cni_policy" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
+  role       = aws_iam_role.eks_node_group_role.name
+}
+
+resource "aws_iam_role_policy_attachment" "ec2_container_registry_read_only" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+  role       = aws_iam_role.eks_node_group_role.name
 }

@@ -7,3 +7,5 @@ AWS components:
 - key pair (to get access to the worker nodes by ssh)
 - EKS Cluster (master nodes)
 - EKS Node Group (worker nodes)
+- EKS Add-on
+  - vpc cni

@@ -54,3 +54,14 @@ variable "scaling_config_desired" {
 variable "ec2_file_ssh_id_rsa_path" {
   default = ""
 }
+
+
+### EKS Add-ons ###
+
+variable "cni_addon_name" {
+  default = "vpc-cni"
+}
+
+variable "cni_addon_version" {
+  default = "1.11.4-eksbuild.1"
+}
