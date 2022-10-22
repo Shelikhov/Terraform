@@ -14,10 +14,10 @@ output "node_group_name" {
   value = module.eks_project.node_group_name
 }
 
-output "cni_addon_name" {
-  value = module.eks_project.cni_addon_name
-}
+#output "cni_addon_name" {
+#  value = module.eks_project.cni_addon_name
+#}
 
-output "cni_addon_version" {
-  value = module.eks_project.cni_addon_version
-}
+#output "cni_addon_version" {
+#  value = module.eks_project.cni_addon_version
+#}

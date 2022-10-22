@@ -23,12 +23,12 @@ resource "aws_eks_cluster" "eks_cluster" {
 
 ### EKS Add-ons
 
-resource "aws_eks_addon" "eks_cni" {
-  addon_name    = var.cni_addon_name
-  cluster_name  = aws_eks_cluster.eks_cluster.name
-  addon_version = var.cni_addon_version
-  tags          = var.tags
-}
+#resource "aws_eks_addon" "eks_cni" {
+#  addon_name    = var.cni_addon_name
+#  cluster_name  = aws_eks_cluster.eks_cluster.name
+#  addon_version = var.cni_addon_version
+#  tags          = var.tags
+#}
 
 ### EKS Node Group
 
