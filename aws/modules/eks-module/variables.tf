@@ -58,10 +58,10 @@ variable "ec2_file_ssh_id_rsa_path" {
 
 ### EKS Add-ons ###
 
-variable "cni_addon_name" {
-  default = "vpc-cni"
-}
+#variable "cni_addon_name" {
+#  default = "vpc-cni"
+#}
 
-variable "cni_addon_version" {
-  default = "v1.11.4-eksbuild.1"
-}
+#variable "cni_addon_version" {
+#  default = "v1.11.4-eksbuild.1"
+#}
