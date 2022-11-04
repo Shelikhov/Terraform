@@ -97,8 +97,14 @@ variable "file_user_data" {
 ### ELB ###
 
 variable "lb_ports" {
-  type    = list(any)
-  default = ["80"]
+  default = [
+	{
+	  lb_port = "80"
+      lb_protocol = "http"
+      instance_port = "80"
+      instance_protocol = "http"
+    }
+  ]
 }
 
 variable "healthy_threshold" {

@@ -99,10 +99,10 @@ resource "aws_elb" "web_server_loadbalancer" {
   dynamic "listener" {
     for_each = var.lb_ports
     content {
-      lb_port           = listener.value
-      lb_protocol       = "http"
-      instance_port     = listener.value
-      instance_protocol = "http"
+      lb_port           = listener.value["lb_port"]
+      lb_protocol       = listener.value["lb_protocol"]
+      instance_port     = listener.value["instance_port"]
+      instance_protocol = listener.value["instance_protocol"]
     }
   }
   health_check {
