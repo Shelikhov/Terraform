@@ -97,7 +97,7 @@ resource "aws_elb" "web_server_loadbalancer" {
   subnets         = local.network.custom_public_subnet_ids
   security_groups = [aws_security_group.my_security_group.id]
   dynamic "listener" {
-    for_each = var.lb_ports
+    for_each = var.lb_listeners
     content {
       lb_port           = listener.value["lb_port"]
       lb_protocol       = listener.value["lb_protocol"]

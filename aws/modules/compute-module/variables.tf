@@ -96,7 +96,7 @@ variable "file_user_data" {
 
 ### ELB ###
 
-variable "lb_ports" {
+variable "lb_listeners" {
   default = [
 	{
 	  lb_port = "80"
