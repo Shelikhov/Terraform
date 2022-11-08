@@ -105,12 +105,15 @@ resource "aws_elb" "web_server_loadbalancer" {
       instance_protocol = listener.value["instance_protocol"]
     }
   }
-  health_check {
-    healthy_threshold   = var.healthy_threshold
-    unhealthy_threshold = var.unhealthy_threshold
-    timeout             = var.timeout
-    target              = var.target
-    interval            = var.interval
+  dynamic "health_check" {
+    for_each = var.lb_health_check
+    content {
+      healthy_threshold   = health_check.value["healthy_threshold"]
+      unhealthy_threshold = health_check.value["unhealthy_threshold"]
+      timeout             = health_check.value["timeout"]
+      target              = health_check.value["target"]
+      interval            = health_check.value["interval"]
+    }
   }
   tags = var.tags
 }

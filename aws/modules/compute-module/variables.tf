@@ -98,31 +98,23 @@ variable "file_user_data" {
 
 variable "lb_listeners" {
   default = [
-	{
-	  lb_port = "80"
-      lb_protocol = "http"
-      instance_port = "80"
+    {
+      lb_port           = "80"
+      lb_protocol       = "http"
+      instance_port     = "80"
       instance_protocol = "http"
     }
   ]
 }
 
-variable "healthy_threshold" {
-  default = 2
-}
-
-variable "unhealthy_threshold" {
-  default = 2
-}
-
-variable "timeout" {
-  default = 5
-}
-
-variable "target" {
-  default = "HTTP:80/"
-}
-
-variable "interval" {
-  default = 10
+variable "lb_health_check" {
+  default = [
+    {
+      healthy_threshold   = 2
+      unhealthy_threshold = 2
+      timeout             = 5
+      target              = "HTTP:80/"
+      interval            = 10
+    }
+  ]
 }
