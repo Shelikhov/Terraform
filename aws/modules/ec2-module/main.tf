@@ -11,7 +11,7 @@ locals {
 
 ################# RESOURCES ###################
 
-### Security Group
+### Security Group ###
 
 resource "aws_security_group" "my_security_group" {
   name   = "${var.project_name}-${random_string.sg_name_prefix.result}"
@@ -51,7 +51,7 @@ resource "random_string" "sg_name_prefix" {
 
 ################### EC2 resources #########################
 
-### Key Pair
+### Key Pair ###
 
 resource "aws_key_pair" "ec2_key_pair" {
   key_name   = var.project_name
@@ -59,7 +59,7 @@ resource "aws_key_pair" "ec2_key_pair" {
   tags       = var.tags
 }
 
-### Launch Template
+### Launch Template ###
 
 resource "aws_launch_template" "ec2_linux_template" {
   name                   = var.project_name
@@ -69,12 +69,11 @@ resource "aws_launch_template" "ec2_linux_template" {
   user_data              = filebase64("${var.file_user_data}")
   network_interfaces {
     network_interface_id        = aws_network_interface.net_interface.id
-#    security_groups             = [aws_security_group.my_security_group.id]
   }
   tags = var.tags
 }
 
-### Auto Scaling Group
+### Auto Scaling Group ###
 
 resource "aws_autoscaling_group" "ec2_ASG" {
   name             = var.project_name
@@ -84,11 +83,10 @@ resource "aws_autoscaling_group" "ec2_ASG" {
   launch_template {
     id      = aws_launch_template.ec2_linux_template.id
   }
-#  vpc_zone_identifier = [local.network.custom_public_subnet_ids[0]]
-  availability_zones = local.azs
+  availability_zones = local.azs	# instead vpc_zone_identifier, because subnet pointed out in the Network Interface
 }
 
-### TEST ###
+### Network Interface ###
 
 resource "aws_network_interface" "net_interface" {
   subnet_id   = local.network.custom_public_subnet_ids[0]
@@ -96,6 +94,8 @@ resource "aws_network_interface" "net_interface" {
   description = var.project_name
   tags        = var.tags
 }
+
+### Elastic IP ###
 
 resource "aws_eip" "eip" {
   network_interface = aws_network_interface.net_interface.id

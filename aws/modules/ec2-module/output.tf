@@ -17,6 +17,14 @@ output "launch_template" {
   }
 }
 
-output "autoscaling_group" {
+output "autoscaling_group_id" {
   value = aws_autoscaling_group.ec2_ASG.id
+}
+
+output "instance_network_interface_id" {
+  value = aws_network_interface.net_interface.id
+}
+
+output "instance_public_ip" {
+  value = aws_eip.eip.public_ip
 }
