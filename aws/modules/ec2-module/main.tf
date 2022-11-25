@@ -68,7 +68,9 @@ resource "aws_launch_template" "ec2_linux_template" {
   vpc_security_group_ids = [aws_security_group.my_security_group.id]
   key_name               = aws_key_pair.ec2_key_pair.key_name
   user_data              = filebase64("${var.file_user_data}")
-  network_interface_id   = aws_network_interface.net_interface.id
+  network_interfaces {
+    network_interface_id   = aws_network_interface.net_interface.id
+  }
   tags                   = var.tags
 }
 
