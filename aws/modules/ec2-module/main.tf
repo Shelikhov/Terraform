@@ -70,6 +70,9 @@ resource "aws_launch_template" "ec2_linux_template" {
   user_data              = filebase64("${var.file_user_data}")
   network_interfaces {
     network_interface_id   = aws_network_interface.net_interface.id
+    associate_public_ip_address = true
+    security_groups = [aws_security_group.my_security_group.id]
+    subnet_id = local.network.custom_public_subnet_ids[0]
   }
   tags                   = var.tags
 }
