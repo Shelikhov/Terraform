@@ -65,7 +65,7 @@ resource "aws_launch_template" "ec2_linux_template" {
   name                   = var.project_name
   image_id               = var.instance_image_id
   instance_type          = var.instance_type
-  vpc_security_group_ids = [aws_security_group.my_security_group.id]
+#  vpc_security_group_ids = [aws_security_group.my_security_group.id]
   key_name               = aws_key_pair.ec2_key_pair.key_name
   user_data              = filebase64("${var.file_user_data}")
   network_interfaces {
