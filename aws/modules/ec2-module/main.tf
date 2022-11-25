@@ -65,7 +65,7 @@ resource "aws_launch_template" "ec2_linux_template" {
   name                   = var.project_name
   image_id               = var.instance_image_id
   instance_type          = var.instance_type
-  vpc_security_group_ids = [aws_security_group.my_security_group.id]
+#  vpc_security_group_ids = [aws_security_group.my_security_group.id]
   key_name               = aws_key_pair.ec2_key_pair.key_name
   user_data              = filebase64("${var.file_user_data}")
   network_interfaces {
@@ -94,7 +94,6 @@ resource "aws_autoscaling_group" "ec2_ASG" {
 
 resource "aws_network_interface" "net_interface" {
   subnet_id   = local.network.custom_public_subnet_ids[0]
-#  security_groups = [aws_security_group.my_security_group.id]
   description = var.project_name
   tags        = var.tags
 }
@@ -103,3 +102,4 @@ resource "aws_eip" "eip" {
   network_interface = aws_network_interface.net_interface.id
   tags              = var.tags
 }
+#  security_groups = [aws_security_group.my_security_group.id]
