@@ -65,16 +65,16 @@ resource "aws_launch_template" "ec2_linux_template" {
   name                   = var.project_name
   image_id               = var.instance_image_id
   instance_type          = var.instance_type
-#  vpc_security_group_ids = [aws_security_group.my_security_group.id]
+  vpc_security_group_ids = [aws_security_group.my_security_group.id]
   key_name               = aws_key_pair.ec2_key_pair.key_name
   user_data              = filebase64("${var.file_user_data}")
   network_interfaces {
-    network_interface_id   = aws_network_interface.net_interface.id
+    network_interface_id        = aws_network_interface.net_interface.id
     associate_public_ip_address = true
-    security_groups = [aws_security_group.my_security_group.id]
-    subnet_id = local.network.custom_public_subnet_ids[0]
+    security_groups             = [aws_security_group.my_security_group.id]
+    subnet_id                   = local.network.custom_public_subnet_ids[0]
   }
-  tags                   = var.tags
+  tags = var.tags
 }
 
 ### Auto Scaling Group
@@ -85,7 +85,8 @@ resource "aws_autoscaling_group" "ec2_ASG" {
   min_size         = var.instance_min_count
   desired_capacity = var.instance_desired_count
   launch_template {
-    id = aws_launch_template.ec2_linux_template.id
+    id      = aws_launch_template.ec2_linux_template.id
+    version = aws_launch_template.ec2_linux_template.latest_version
   }
   vpc_zone_identifier = local.network.custom_public_subnet_ids
 }
