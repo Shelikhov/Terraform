@@ -91,6 +91,7 @@ resource "aws_autoscaling_group" "ec2_ASG" {
 
 resource "aws_network_interface" "net_interface" {
   subnet_id   = local.network.custom_public_subnet_ids[0]
+  security_groups = [aws_security_group.my_security_group.id]
   description = var.project_name
   tags        = var.tags
 }
