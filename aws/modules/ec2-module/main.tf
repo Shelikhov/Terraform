@@ -86,7 +86,7 @@ resource "aws_autoscaling_group" "ec2_ASG" {
   desired_capacity = var.instance_desired_count
   launch_template {
     id      = aws_launch_template.ec2_linux_template.id
-    version = aws_launch_template.ec2_linux_template.latest_version
+#    version = aws_launch_template.ec2_linux_template.latest_version
   }
   vpc_zone_identifier = local.network.custom_public_subnet_ids
 }
@@ -95,6 +95,7 @@ resource "aws_autoscaling_group" "ec2_ASG" {
 
 resource "aws_network_interface" "net_interface" {
   subnet_id   = local.network.custom_public_subnet_ids[0]
+  security_groups = [aws_security_group.my_security_group.id]
   description = var.project_name
   tags        = var.tags
 }
@@ -103,4 +104,3 @@ resource "aws_eip" "eip" {
   network_interface = aws_network_interface.net_interface.id
   tags              = var.tags
 }
-#  security_groups = [aws_security_group.my_security_group.id]
