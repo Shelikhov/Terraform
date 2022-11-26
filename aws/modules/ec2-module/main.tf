@@ -97,7 +97,7 @@ resource "aws_network_interface" "net_interface" {
 
 ### Elastic IP ###
 
-resource "aws_eip" "eip" {
-  network_interface = aws_network_interface.net_interface.id
-  tags              = var.tags
-}
+#resource "aws_eip" "eip" {
+#  network_interface = aws_network_interface.net_interface.id
+#  tags              = var.tags
+#}
