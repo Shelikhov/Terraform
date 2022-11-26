@@ -6,13 +6,13 @@ output "vpc_id" {
   value = aws_vpc.custom_vpc.id
 }
 
-#output "custom_public_subnet_ids" {
-#  value = [aws_subnet.public_subnets.id]
-#}
+output "custom_public_subnet_ids" {
+  value = aws_subnet.public_subnets.id
+}
 
-#output "custom_private_subnet_ids" {
-#  value = [aws_subnet.private_subnets.id]
-#}
+output "custom_private_subnet_ids" {
+  value = aws_subnet.private_subnets.id
+}
 
 output "availability-zones" {
   value = [data.aws_availability_zones.azs.names[0], data.aws_availability_zones.azs.names[1]]
