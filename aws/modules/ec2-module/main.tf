@@ -66,7 +66,7 @@ resource "aws_launch_template" "ec2_linux_template" {
   image_id      = var.instance_image_id
   instance_type = var.instance_type
   key_name      = aws_key_pair.ec2_key_pair.key_name
-  user_data     = filebase64("${var.file_user_data}")
+  user_data     = var.file_user_data #filebase64("${var.file_user_data}")
   network_interfaces {
     network_interface_id = aws_network_interface.net_interface.id
   }
