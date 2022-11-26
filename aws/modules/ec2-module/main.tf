@@ -3,7 +3,7 @@
 #=============================================
 
 locals {
-  azs     = [data.aws_availability_zones.azs.names[0], data.aws_availability_zones.azs.names[1]]
+  azs     = [data.aws_availability_zones.azs.names[0]] # prefix a
   network = data.terraform_remote_state.network.outputs
 }
 
