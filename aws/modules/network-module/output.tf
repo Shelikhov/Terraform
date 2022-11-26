@@ -7,11 +7,11 @@ output "vpc_id" {
 }
 
 output "custom_public_subnet_ids" {
-  value = [aws_subnet.public_subnets[0].id, aws_subnet.public_subnets[1].id]
+  value = [aws_subnet.public_subnets.id]
 }
 
 output "custom_private_subnet_ids" {
-  value = [aws_subnet.private_subnets[0].id, aws_subnet.private_subnets[1].id]
+  value = [aws_subnet.private_subnets.id]
 }
 
 output "availability-zones" {
