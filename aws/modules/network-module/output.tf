@@ -34,6 +34,6 @@ output "private_route_table" {
   value = aws_route_table.private_route_table.id
 }
 
-output "security_group_name" {
-  value = aws_security_group.security_group.name
-}
+#output "security_group_name" {
+#  value = aws_security_group.security_group.name
+#}
