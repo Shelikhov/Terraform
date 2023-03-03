@@ -5,13 +5,13 @@
 ### Common ###
 
 variable "project_name" {
-  default = "ec2-server"
+  default = "project_name"
 }
 
 variable "tags" {
   type = map(any)
   default = {
-    project_name = "ec2_server"
+    project_name = "project_name"
     environment  = "dev"
   }
 }
@@ -85,7 +85,7 @@ variable "instance_min_count" {
 }
 
 variable "instance_desired_count" {
-  default = 2
+  default = 1
 }
 
 variable "ec2_file_ssh_id_rsa_path" {
