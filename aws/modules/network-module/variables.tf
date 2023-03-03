@@ -5,13 +5,13 @@
 ### Common vars ###
 
 variable "project_name" {
-  default = "web_server"
+  default = "project_name"
 }
 
 variable "tags" {
   type = map(any)
   default = {
-    project_name = "web_server"
+    project_name = "project_name"
     environment  = "dev"
   }
 }

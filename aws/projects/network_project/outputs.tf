@@ -1,3 +1,11 @@
+#======================================================
+#                       OUTPUT
+#======================================================
+
+output "project_name" {
+  value = module.network_project.project_name
+}
+
 output "aws_region" {
   value = var.aws_region
 }
