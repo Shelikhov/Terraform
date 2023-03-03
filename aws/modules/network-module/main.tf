@@ -72,39 +72,3 @@ resource "aws_internet_gateway" "custom_internet_gateway" {
   vpc_id = aws_vpc.custom_vpc.id
   tags   = var.tags
 }
-
-
-#### Security Group
-#
-#resource "aws_security_group" "security_group" {
-#  name   = "${var.project_name}-${random_string.sg_name_prefix.result}"
-#  vpc_id = aws_vpc.custom_vpc.id
-#
-#  dynamic "ingress" {
-#    for_each = var.sg_ingress_rules
-#    content {
-#      from_port   = ingress.value["port"]
-#      to_port     = ingress.value["port"]
-#      protocol    = ingress.value["protocol"]
-#      cidr_blocks = ingress.value["cidr_blocks"]
-#    }
-#  }
-#
-#  dynamic "egress" {
-#    for_each = var.sg_egress_rules
-#    content {
-#      from_port   = egress.value["port"]
-#      to_port     = egress.value["port"]
-#      protocol    = egress.value["protocol"]
-#      cidr_blocks = egress.value["cidr_blocks"]
-#    }
-#  }
-#  tags = var.tags
-#}
-#
-#resource "random_string" "sg_name_prefix" {
-#  length  = var.sg_name_prefix_length
-#  special = false
-#  lower   = true
-#  upper   = false
-#}

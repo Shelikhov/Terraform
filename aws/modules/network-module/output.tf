@@ -11,11 +11,11 @@ output "vpc_id" {
 }
 
 output "custom_public_subnet_ids" {
-  value = aws_subnet.public_subnets[0].id
+  value = aws_subnet.public_subnets.*.id
 }
 
 output "custom_private_subnet_ids" {
-  value = aws_subnet.private_subnets[0].id
+  value = aws_subnet.private_subnets.*.id
 }
 
 output "availability-zones" {
@@ -33,7 +33,3 @@ output "public_route_table" {
 output "private_route_table" {
   value = aws_route_table.private_route_table.id
 }
-
-#output "security_group_name" {
-#  value = aws_security_group.security_group.name
-#}

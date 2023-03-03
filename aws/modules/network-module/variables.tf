@@ -43,30 +43,3 @@ variable "vpc_routes" {
     destination = "0.0.0.0/0"
   }
 }
-
-
-### Security Group ###
-
-variable "sg_ingress_rules" {
-  default = [
-    {
-      port        = 0
-      protocol    = -1
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-  ]
-}
-
-variable "sg_egress_rules" {
-  default = [
-    {
-      port        = 0
-      protocol    = -1
-      cidr_blocks = ["0.0.0.0/0"]
-    }
-  ]
-}
-
-variable "sg_name_prefix_length" {
-  default = 5
-}

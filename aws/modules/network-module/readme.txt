@@ -5,4 +5,3 @@ AWS components:
 - Subnets
 - Route Tables
 - Internet Gateway
-- Security Group
