@@ -4,7 +4,7 @@
 
 ### Common ###
 
-variable "custom_name" {
+variable "project_name" {
   default = "custom_name"
 }
 
