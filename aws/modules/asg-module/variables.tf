@@ -4,14 +4,14 @@
 
 ### Common ###
 
-variable "project_name" {
-  default = "project_name"
+variable "custom_name" {
+  default = "custom_name"
 }
 
 variable "tags" {
   type = map(any)
   default = {
-    project_name = "project_name"
+    custom_name = "custom_name"
     environment  = "dev"
   }
 }
