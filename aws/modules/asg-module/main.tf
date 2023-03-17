@@ -84,7 +84,8 @@ resource "aws_autoscaling_group" "ec2_ASG" {
   launch_template {
     id = aws_launch_template.ec2_linux_template.id
   }
-  availability_zones = local.azs # instead vpc_zone_identifier, because subnet pointed out in the Network Interface
+  vpc_zone_identifier = [local.network.custom_public_subnet_ids]
+#  availability_zones = local.azs # instead vpc_zone_identifier, because subnet pointed out in the Network Interface
 }
 
 ### Network Interface ###
