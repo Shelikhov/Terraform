@@ -1,8 +1,12 @@
+#=============================================
+#               VARIABLES
+#=============================================
+
 variable "aws_region" {
   default = "us-east-2"
 }
 
-variable "web_server_script_file_path" {
+variable "file_user_data" {
   default = "" # Script for ec2 initializing
 }
 
