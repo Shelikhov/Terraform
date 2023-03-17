@@ -25,3 +25,21 @@ variable "s3_bucket_name" {
 variable "s3_key_path" {
   default = "terraform/projects/network_project"
 }
+
+variable "instance_image_id" {
+  default = "ami-00eeedc4036573771"
+}
+
+variable "instance_type" {
+  default = "t2.micro"
+}
+
+variable "sg_ingress_rules" {
+  default = [
+    {
+      port        = 22
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  ]
+}
