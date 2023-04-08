@@ -86,6 +86,7 @@ resource "aws_autoscaling_group" "ec2_ASG" {
   }
   vpc_zone_identifier = [local.network.custom_public_subnet_ids[0]]
 #  availability_zones = local.azs # instead vpc_zone_identifier, because subnet pointed out in the Network Interface
+  termination_policies = var.termination_policies
 }
 
 ### Network Interface ###

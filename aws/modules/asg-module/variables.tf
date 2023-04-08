@@ -88,6 +88,10 @@ variable "instance_desired_count" {
   default = 1
 }
 
+variable "termination_policies" {
+  default = [Default]
+}
+
 variable "ec2_file_ssh_id_rsa_path" {
   default = ""
 }
