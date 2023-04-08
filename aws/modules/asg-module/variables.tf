@@ -12,7 +12,7 @@ variable "tags" {
   type = map(any)
   default = {
     custom_name = "custom_name"
-    environment  = "dev"
+    environment = "dev"
   }
 }
 
@@ -89,7 +89,7 @@ variable "instance_desired_count" {
 }
 
 variable "termination_policies" {
-  default = [Default]
+  default = ["Default"]
 }
 
 variable "ec2_file_ssh_id_rsa_path" {

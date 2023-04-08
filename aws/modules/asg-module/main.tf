@@ -62,15 +62,15 @@ resource "aws_key_pair" "ec2_key_pair" {
 ### Launch Template ###
 
 resource "aws_launch_template" "ec2_linux_template" {
-  name          = var.project_name
-  image_id      = var.instance_image_id
-  instance_type = var.instance_type
-  key_name      = aws_key_pair.ec2_key_pair.key_name
-  user_data     = var.file_user_data #filebase64("${var.file_user_data}")
+  name                   = var.project_name
+  image_id               = var.instance_image_id
+  instance_type          = var.instance_type
+  key_name               = aws_key_pair.ec2_key_pair.key_name
+  user_data              = var.file_user_data #filebase64("${var.file_user_data}")
   vpc_security_group_ids = [aws_security_group.my_security_group.id]
-#  network_interfaces {
-#    network_interface_id = aws_network_interface.net_interface.id
-#  }
+  #  network_interfaces {
+  #    network_interface_id = aws_network_interface.net_interface.id
+  #  }
   tags = var.tags
 }
 
@@ -85,7 +85,7 @@ resource "aws_autoscaling_group" "ec2_ASG" {
     id = aws_launch_template.ec2_linux_template.id
   }
   vpc_zone_identifier = [local.network.custom_public_subnet_ids[0]]
-#  availability_zones = local.azs # instead vpc_zone_identifier, because subnet pointed out in the Network Interface
+  #  availability_zones = local.azs # instead vpc_zone_identifier, because subnet pointed out in the Network Interface
   termination_policies = var.termination_policies
 }
 
