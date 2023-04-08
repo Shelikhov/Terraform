@@ -21,4 +21,5 @@ module "asg_project" {
   termination_policies     = var.termination_policies
   vpc_id                   = local.network.vpc_id
   subnets                  = [local.network.custom_public_subnet_ids[0]]
+  loadbalancer_name        = var.project_name
 }

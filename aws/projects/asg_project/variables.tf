@@ -2,6 +2,10 @@
 #               VARIABLES
 #=============================================
 
+variable "project_name" {
+  default = "custom"
+}
+
 variable "aws_region" {
   default = "us-east-2"
 }

@@ -87,3 +87,7 @@ variable "subnets" {
 variable "vpc_id" {
   default = ""
 }
+
+variable "loadbalancer_name" {
+  default = ""
+}

@@ -5,7 +5,7 @@
 
 ### Security Group ###
 
-resource "aws_security_group" "my_security_group" {
+resource "aws_security_group" "security_group" {
   name   = "${var.project_name}-${random_string.sg_name_prefix.result}"
   vpc_id = var.vpc_id
 
@@ -59,7 +59,7 @@ resource "aws_launch_template" "ec2_linux_template" {
   instance_type          = var.instance_type
   key_name               = aws_key_pair.ec2_key_pair.key_name
   user_data              = var.file_user_data #filebase64("${var.file_user_data}")
-  vpc_security_group_ids = [aws_security_group.my_security_group.id]
+  vpc_security_group_ids = [aws_security_group.security_group.id]
   #  network_interfaces {
   #    network_interface_id = aws_network_interface.net_interface.id
   #  }
@@ -79,13 +79,14 @@ resource "aws_autoscaling_group" "ec2_ASG" {
   vpc_zone_identifier = var.subnets
   #  availability_zones = local.azs # instead vpc_zone_identifier, because subnet pointed out in the Network Interface
   termination_policies = var.termination_policies
+  load_balancers       = [var.loadbalancer_name]
 }
 
 ### Network Interface ###
 
 #resource "aws_network_interface" "net_interface" {
 #  subnet_id       = local.network.custom_public_subnet_ids
-#  security_groups = [aws_security_group.my_security_group.id]
+#  security_groups = [aws_security_group.security_group.id]
 #  description     = var.project_name
 #  tags            = var.tags
 #}
