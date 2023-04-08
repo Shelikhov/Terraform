@@ -30,6 +30,10 @@ output "internet_gateway_id" {
   value = module.network_project.internet_gateway_id
 }
 
+output "nat_gateway_id" {
+  value = module.network_project.nat_gateway_id
+}
+
 output "public_route_table" {
   value = module.network_project.public_route_table
 }

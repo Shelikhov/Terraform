@@ -7,13 +7,13 @@ variable "aws_region" {
 }
 
 variable "project_name" {
-  default = "project_name"
+  default = "k8s"
 }
 
 variable "tags" {
   type = map(any)
   default = {
-    project_name = "project_name"
+    project_name = "k8s"
     environment  = "dev"
   }
 }

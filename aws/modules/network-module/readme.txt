@@ -2,6 +2,9 @@ Module for network infrastructure
 
 AWS components:
 - VPC
-- Subnets
+- Public Subnets
+- Private Subnets
 - Route Tables
 - Internet Gateway
+- NAT
+- EIP (for NAT)
