@@ -99,3 +99,11 @@ variable "ec2_file_ssh_id_rsa_path" {
 variable "file_user_data" {
   default = ""
 }
+
+variable "subnets" {
+  default = []
+}
+
+variable "vpc_id" {
+  default = ""
+}

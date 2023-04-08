@@ -1,21 +1,13 @@
 #=============================================
-#           COMPUTE RESOURCES
+#           RESOURCES
 #=============================================
 
-locals {
-  azs     = [data.aws_availability_zones.azs.names[0]] # prefix a
-  network = data.terraform_remote_state.network.outputs
-}
-
-
-
-################# RESOURCES ###################
 
 ### Security Group ###
 
 resource "aws_security_group" "my_security_group" {
   name   = "${var.project_name}-${random_string.sg_name_prefix.result}"
-  vpc_id = local.network.vpc_id
+  vpc_id = var.vpc_id
 
   dynamic "ingress" {
     for_each = var.sg_ingress_rules
@@ -84,7 +76,7 @@ resource "aws_autoscaling_group" "ec2_ASG" {
   launch_template {
     id = aws_launch_template.ec2_linux_template.id
   }
-  vpc_zone_identifier = [local.network.custom_public_subnet_ids[0]]
+  vpc_zone_identifier = var.subnets
   #  availability_zones = local.azs # instead vpc_zone_identifier, because subnet pointed out in the Network Interface
   termination_policies = var.termination_policies
 }
