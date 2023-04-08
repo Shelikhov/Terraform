@@ -45,7 +45,7 @@ resource "random_string" "sg_name_prefix" {
 ### Elastic Load Balancer ###
 
 resource "aws_elb" "loadbalancer" {
-  name = var.project_name
+  name            = var.project_name
   subnets         = var.subnets
   security_groups = [aws_security_group.elb_security_group.id]
   dynamic "listener" {

@@ -13,28 +13,8 @@ variable "tags" {
   type = map(any)
   default = {
     project_name = "custom"
-    environment = "dev"
+    environment  = "dev"
   }
-}
-
-
-
-### Network Dependencies ###
-
-variable "state_storage_type" {
-  default = "s3"
-}
-
-variable "s3_bucket_name" {
-  default = ""
-}
-
-variable "s3_key_path" {
-  default = ""
-}
-
-variable "aws_region" {
-  default = "us-east-2"
 }
 
 

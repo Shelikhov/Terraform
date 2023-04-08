@@ -50,8 +50,8 @@ resource "aws_internet_gateway" "custom_internet_gateway" {
 ### Elastic-IP for NAT
 
 resource "aws_eip" "nat_eip" {
-  vpc        = true
-  tags   = var.tags
+  vpc  = true
+  tags = var.tags
   depends_on = [
     aws_internet_gateway.custom_internet_gateway
   ]
@@ -63,7 +63,7 @@ resource "aws_eip" "nat_eip" {
 resource "aws_nat_gateway" "nat" {
   allocation_id = aws_eip.nat_eip.id
   subnet_id     = element(aws_subnet.public_subnets.*.id, 0)
-  tags = var.tags
+  tags          = var.tags
 }
 
 
@@ -81,7 +81,7 @@ resource "aws_route_table" "public_route_table" {
 resource "aws_route_table" "private_route_table" {
   vpc_id = aws_vpc.custom_vpc.id
   route {
-    cidr_block = var.vpc_routes.destination
+    cidr_block     = var.vpc_routes.destination
     nat_gateway_id = aws_nat_gateway.nat.id
   }
   tags = merge(var.tags, { availability = "private" })
