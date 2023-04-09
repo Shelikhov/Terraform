@@ -14,7 +14,7 @@ variable "file_user_data" {
   default = "" # Script for ec2 initializing
 }
 
-variable "ec2_file_ssh_id_rsa_path" {
+variable "ec2_file_ssh_key_path" {
   default = "" # SSH key location to get access to ec2 instances
 }
 

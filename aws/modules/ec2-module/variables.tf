@@ -48,32 +48,21 @@ variable "sg_name_prefix_length" {
 
 ### EC2 Instance ###
 
-variable "ssh_key_name_prefix_length" {
-  default = 5
-}
-
-variable "instance_image_id" {
-  default = "ami-0f924dc71d44d23e2"
+#ami-0103f211a154d64a6: Amazon Linux 2023
+#ami-00eeedc4036573771: Ubuntu-22.04
+#ami-0568936c8d2b91c4e: Ubuntu-20.04
+#ami-02238ac43d6385ab3: Amazon linux
+#ami-067a8829f9ae24c1c: RHEL 9
+variable "ami" {
+  default = "ami-0103f211a154d64a6"
 }
 
 variable "instance_type" {
   default = "t2.micro"
 }
 
-variable "instance_max_count" {
-  default = 3
-}
-
-variable "instance_min_count" {
-  default = 1
-}
-
-variable "instance_desired_count" {
-  default = 1
-}
-
-variable "termination_policies" {
-  default = ["Default"]
+variable "subnet_id" {
+  default = ""
 }
 
 variable "ec2_ssh_key_name" {
@@ -88,14 +77,6 @@ variable "file_user_data" {
   default = ""
 }
 
-variable "subnets" {
-  default = []
-}
-
 variable "vpc_id" {
-  default = ""
-}
-
-variable "loadbalancer_name" {
   default = ""
 }
