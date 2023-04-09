@@ -46,7 +46,7 @@ resource "random_string" "sg_name_prefix" {
 ### Key Pair ###
 
 resource "aws_key_pair" "ec2_key_pair" {
-  key_name   = var.ec2_ssh_key_name ? "${var.ec2_ssh_key_name}-${random_string.ssh_key_name_prefix}" : "${var.project_name}-${random_string.ssh_key_name_prefix}"
+  key_name   = try(var.ec2_ssh_key_name, var.project_name)
   public_key = file("${var.ec2_file_ssh_key_path}")
   tags       = var.tags
 }
