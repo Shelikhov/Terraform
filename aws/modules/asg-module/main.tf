@@ -76,7 +76,7 @@ resource "aws_launch_template" "ec2_linux_template" {
 ### Auto Scaling Group ###
 
 resource "aws_autoscaling_group" "ec2_ASG" {
-  name             = var.project_name
+  name             = try(var.asg_name, var.project_name)
   max_size         = var.instance_max_count
   min_size         = var.instance_min_count
   desired_capacity = var.instance_desired_count

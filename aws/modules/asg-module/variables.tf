@@ -56,6 +56,10 @@ variable "launch_template_name" {
   default = "custom"
 }
 
+variable "asg_name" {
+  default = "custom"
+}
+
 variable "instance_image_id" {
   default = "ami-0f924dc71d44d23e2"
 }
