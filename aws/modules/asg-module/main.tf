@@ -61,7 +61,7 @@ resource "random_string" "ssh_key_name_prefix" {
 ### Launch Template ###
 
 resource "aws_launch_template" "ec2_linux_template" {
-  name                   = var.project_name
+  name                   = try(var.launch_template_name, var.project_name)
   image_id               = var.instance_image_id
   instance_type          = var.instance_type
   key_name               = aws_key_pair.ec2_key_pair.key_name

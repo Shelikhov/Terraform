@@ -52,6 +52,10 @@ variable "ssh_key_name_prefix_length" {
   default = 5
 }
 
+variable "launch_template_name" {
+  default = "custom"
+}
+
 variable "instance_image_id" {
   default = "ami-0f924dc71d44d23e2"
 }
