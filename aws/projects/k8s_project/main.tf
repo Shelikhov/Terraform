@@ -21,6 +21,25 @@ module "loadbalancer" {
   vpc_id           = local.network.vpc_id
 }
 
+# Autoscaling Group for Etcd nodes.
+module "asg_etcd_nodes" {
+  source                 = "git@github.com:Shelikhov/Terraform.git//aws/modules/asg-module?ref=develop"
+  file_user_data         = var.etcd_node_file_user_data
+  ec2_ssh_key_name       = var.etcd_ec2_ssh_key_name
+  ec2_file_ssh_key_path  = var.etcd_ec2_ssh_key_path
+  launch_template_name   = var.etcd_launch_template_name
+  asg_name               = var.etcd_asg_name
+  instance_type          = var.etcd_instance_type
+  instance_image_id      = var.etcd_instance_image_id
+  instance_min_count     = var.etcd_instance_min_count
+  instance_max_count     = var.etcd_instance_max_count
+  instance_desired_count = var.etcd_instance_desired_count
+  termination_policies   = var.etcd_termination_policies
+  sg_ingress_rules       = var.etcd_sg_ingress_rules
+  vpc_id                 = local.network.vpc_id
+  subnets                = [local.network.custom_private_subnet_ids[0]]
+}
+
 # Autoscaling Group for master nodes.
 module "asg_master_nodes" {
   source                 = "git@github.com:Shelikhov/Terraform.git//aws/modules/asg-module?ref=develop"
@@ -29,11 +48,13 @@ module "asg_master_nodes" {
   ec2_file_ssh_key_path  = var.master_ec2_ssh_key_path
   launch_template_name   = var.master_launch_template_name
   asg_name               = var.master_asg_name
-  instance_type          = var.instance_type
-  instance_image_id      = var.instance_image_id
-  sg_ingress_rules       = var.master_sg_ingress_rules
+  instance_type          = var.master_instance_type
+  instance_image_id      = var.master_instance_image_id
+  instance_min_count     = var.master_instance_min_count
+  instance_max_count     = var.master_instance_max_count
   instance_desired_count = var.master_instance_desired_count
-  termination_policies   = var.termination_policies
+  termination_policies   = var.master_termination_policies
+  sg_ingress_rules       = var.master_sg_ingress_rules
   vpc_id                 = local.network.vpc_id
   subnets                = [local.network.custom_private_subnet_ids[0]]
   loadbalancer_name      = var.project_name
@@ -51,11 +72,13 @@ module "asg_worker_nodes" {
   ec2_file_ssh_key_path  = var.worker_ec2_ssh_key_path
   launch_template_name   = var.worker_launch_template_name
   asg_name               = var.worker_asg_name
-  instance_type          = var.instance_type
-  instance_image_id      = var.instance_image_id
-  sg_ingress_rules       = var.worker_sg_ingress_rules
+  instance_type          = var.worker_instance_type
+  instance_image_id      = var.worker_instance_image_id
+  instance_min_count     = var.worker_instance_min_count
+  instance_max_count     = var.worker_instance_max_count
   instance_desired_count = var.worker_instance_desired_count
-  termination_policies   = var.termination_policies
+  termination_policies   = var.worker_termination_policies
+  sg_ingress_rules       = var.worker_sg_ingress_rules
   vpc_id                 = local.network.vpc_id
   subnets                = [local.network.custom_private_subnet_ids[1]]
 

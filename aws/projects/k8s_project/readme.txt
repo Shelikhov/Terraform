@@ -11,7 +11,8 @@ Prerequisites:
   - s3_bucket_name
 
 AWS components:
-  - Autoscaling Group for master nodes
-  - Autoscaling Group for worker nodes
-  - Loadbalancer for master nodes
+  - Autoscaling Group for etcd instances
+  - Autoscaling Group for master instances
+  - Autoscaling Group for worker instances
+  - Loadbalancer for master instances
   - bastion host
